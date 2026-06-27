@@ -67,23 +67,83 @@ const wireframeMat = new THREE.MeshBasicMaterial({
 // ---- GEOMETRIES ----
 const geometries = [];
 
-// Central torus knot
-const torusKnot = new THREE.Mesh(
-  new THREE.TorusKnotGeometry(1.2, 0.35, 128, 32),
-  copperMat
-);
-torusKnot.position.y = 0.5;
-scene.add(torusKnot);
-geometries.push(torusKnot);
+// ---- 3D HUMAN FIGURE ----
+const humanGroup = new THREE.Group();
 
-// Wireframe torus knot
-const wireKnot = new THREE.Mesh(
-  new THREE.TorusKnotGeometry(1.4, 0.4, 64, 16),
-  wireframeMat
+const skinMat = new THREE.MeshStandardMaterial({
+  color: 0xc87d4f,
+  metalness: 0.7,
+  roughness: 0.3,
+});
+const accentMat = new THREE.MeshStandardMaterial({
+  color: 0xe8a87c,
+  metalness: 0.5,
+  roughness: 0.35,
+});
+
+// Head
+const head = new THREE.Mesh(new THREE.SphereGeometry(0.45, 24, 24), skinMat);
+head.position.y = 2.1;
+humanGroup.add(head);
+
+// Neck
+const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 0.25, 12), skinMat);
+neck.position.y = 1.7;
+humanGroup.add(neck);
+
+// Torso (rounded shape using cylinder with scale)
+const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.4, 1.0, 16), accentMat);
+torso.position.y = 1.1;
+humanGroup.add(torso);
+
+// Upper torso overlay
+const chest = new THREE.Mesh(new THREE.SphereGeometry(0.4, 16, 16, 0, Math.PI * 2, 0, Math.PI / 2), skinMat);
+chest.position.y = 1.3;
+chest.scale.set(1, 0.6, 0.6);
+humanGroup.add(chest);
+
+// Left arm
+const leftArm = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.8, 10), skinMat);
+leftArm.position.set(-0.7, 1.4, 0);
+leftArm.rotation.z = 0.2;
+leftArm.rotation.x = -0.3;
+humanGroup.add(leftArm);
+
+// Right arm
+const rightArm = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.8, 10), skinMat);
+rightArm.position.set(0.7, 1.4, 0);
+rightArm.rotation.z = -0.2;
+rightArm.rotation.x = 0.3;
+humanGroup.add(rightArm);
+
+// Left leg
+const leftLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.18, 0.8, 10), skinMat);
+leftLeg.position.set(-0.22, 0.35, 0);
+leftLeg.rotation.x = 0.05;
+humanGroup.add(leftLeg);
+
+// Right leg
+const rightLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.18, 0.8, 10), skinMat);
+rightLeg.position.set(0.22, 0.35, 0);
+rightLeg.rotation.x = -0.05;
+humanGroup.add(rightLeg);
+
+// Wireframe aura around human
+const auraWire = new THREE.Mesh(
+  new THREE.SphereGeometry(1.5, 24, 18),
+  new THREE.MeshBasicMaterial({
+    color: 0xc87d4f,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.12,
+  })
 );
-wireKnot.position.y = 0.5;
-scene.add(wireKnot);
-geometries.push(wireKnot);
+auraWire.position.y = 1.2;
+humanGroup.add(auraWire);
+
+humanGroup.position.y = -1.5;
+scene.add(humanGroup);
+geometries.push(humanGroup);
 
 // Icosahedron
 const ico = new THREE.Mesh(
@@ -228,11 +288,12 @@ function animate() {
   targetX += (mouseX - targetX) * 0.05;
   targetY += (mouseY - targetY) * 0.05;
 
-  // Rotate central geometry
-  torusKnot.rotation.x += 0.003;
-  torusKnot.rotation.y += 0.008;
-  wireKnot.rotation.x = torusKnot.rotation.x;
-  wireKnot.rotation.y = torusKnot.rotation.y;
+  // Human idle animation — subtle breathe and sway
+  const breathe = Math.sin(Date.now() * 0.0015) * 0.015;
+  humanGroup.position.y = -1.5 + breathe;
+  humanGroup.rotation.y += 0.005;
+  leftArm.rotation.x = -0.3 + Math.sin(Date.now() * 0.002) * 0.05;
+  rightArm.rotation.x = 0.3 - Math.sin(Date.now() * 0.002) * 0.05;
 
   // Orbiting geometries
   ico.rotation.x += 0.005;

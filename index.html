@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex Mercer · Engineer</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23C87D4F'/><text x='16' y='22' font-size='20' text-anchor='middle' fill='%231a1410' font-weight='900'>A</text></svg>" />
+  <title>Pranshu Chourasia · Engineer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23C87D4F'/><text x='16' y='22' font-size='18' text-anchor='middle' fill='%231a1410' font-weight='900'>PC</text></svg>" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -17,7 +17,7 @@
   <!-- NAV -->
   <nav>
     <div class="nav-inner">
-      <span class="logo">⌘ AM</span>
+      <span class="logo">⌘ PC</span>
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
@@ -31,7 +31,7 @@
   <section id="hero">
     <div class="hero-content">
       <span class="badge">Building the future · est. 2026</span>
-      <h1 class="glitch" data-text="Alex Mercer">Alex Mercer</h1>
+      <h1 class="glitch" data-text="Pranshu Chourasia">Pranshu Chourasia</h1>
       <p class="subtitle">Software Engineer · 3D & Interaction</p>
       <p class="tagline">I craft digital experiences where code meets dimension</p>
       <div class="hero-cta">
@@ -60,15 +60,33 @@
         </div>
       </div>
       <div class="about-3d">
-        <div class="cube-container">
-          <div class="cube">
-            <div class="face front"></div>
-            <div class="face back"></div>
-            <div class="face right"></div>
-            <div class="face left"></div>
-            <div class="face top"></div>
-            <div class="face bottom"></div>
-          </div>
+        <div class="human-silhouette">
+          <svg viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#C87D4F"/>
+                <stop offset="50%" stop-color="#E8A87C"/>
+                <stop offset="100%" stop-color="#C87D4F"/>
+              </linearGradient>
+            </defs>
+            <!-- Head -->
+            <circle cx="100" cy="30" r="22" stroke="url(#hGrad)" stroke-width="2.5" fill="none" opacity="0.9"/>
+            <!-- Neck -->
+            <line x1="100" y1="52" x2="100" y2="68" stroke="url(#hGrad)" stroke-width="3" opacity="0.8"/>
+            <!-- Torso -->
+            <path d="M78 68 L122 68 L130 150 L70 150 Z" stroke="url(#hGrad)" stroke-width="2.5" fill="none" opacity="0.85"/>
+            <!-- Left arm -->
+            <path d="M78 72 L55 100 L42 140" stroke="url(#hGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.8" class="arm-left"/>
+            <!-- Right arm -->
+            <path d="M122 72 L145 100 L158 140" stroke="url(#hGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.8" class="arm-right"/>
+            <!-- Left leg -->
+            <path d="M90 150 L85 210 L72 250" stroke="url(#hGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.8" class="leg-left"/>
+            <!-- Right leg -->
+            <path d="M110 150 L115 210 L128 250" stroke="url(#hGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.8" class="leg-right"/>
+            <!-- Wireframe aura ring -->
+            <circle cx="100" cy="140" r="90" stroke="url(#hGrad)" stroke-width="1" fill="none" opacity="0.15" class="aura-ring"/>
+            <circle cx="100" cy="140" r="100" stroke="url(#hGrad)" stroke-width="0.5" fill="none" opacity="0.1" class="aura-ring-2"/>
+          </svg>
         </div>
       </div>
     </div>
@@ -194,7 +212,7 @@
     <div class="contact-inner">
       <h2>Let's build something <span class="copper">dimensional</span></h2>
       <p class="contact-sub">Open for collaborations, commissions, and conversations</p>
-      <a href="mailto:alex@mercer.dev" class="btn-primary large">alex@mercer.dev</a>
+      <a href="mailto:pranshu@chourasia.dev" class="btn-primary large">pranshu@chourasia.dev</a>
       <div class="social-links">
         <a href="#" aria-label="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -208,7 +226,7 @@
       </div>
     </div>
     <footer>
-      <p>© 2026 Alex Mercer — Crafted with copper & code</p>
+      <p>© 2026 Pranshu Chourasia — Crafted with copper & code</p>
     </footer>
   </section>
 
